@@ -11732,3 +11732,17 @@ html {
     left: -2vw;
   }
 }
+
+.project-img-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 40%;          /* ensures the image container takes up fixed space */
+  flex-shrink: 0;      /* prevents it from collapsing */
+}
+
+.project-img {
+  width: 100%;         /* image fills the wrapper’s width */
+  height: auto;
+  object-fit: contain;
+}

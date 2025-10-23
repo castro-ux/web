@@ -93,7 +93,11 @@
             <span class="text-gradient d-inline">Static Website with Nginx and Docker</span>
           </h1>
           <p class="text-muted mt-3">
-	    Having just graduated, I wasn’t quite sure where to start showcasing my work. While taking my Data Science SQL course, I followed @amigoscode’s tutorials in parallel and found him to be an excellent instructor. I had bookmarked his and TechWorld with Nana’s “Docker and Kubernetes – Full Course for Beginners” months earlier and started casually watching it to build a stronger foundation in Docker. That’s what ultimately inspired the idea of creating my own website.
+	    Having just graduated, I wasn’t quite sure where to start showcasing my work. While taking my Data Science SQL course, I followed @amigoscode tutorials alongside the class and found him to be an 
+	    excellent instructor. I had bookedmarked <i>Docker and Kubernetes – Full Course for Beginners </i> a while back and finally had the time to finish watching it. Now was the perfect time to learn 	
+	    about containerization more and build a personal website. I used a Bootstrap template to streamline the development process. This is more of a general overview of running a setup than an actual 
+	    tutorial. 
+
 	  </p>
         </div>
 
@@ -105,84 +109,52 @@
               <div class="card shadow border-0 rounded-4 mb-5">
                 <div class="card-body p-5">
                   <div class="text-center mb-4">
-                    <h2 class="fw-bolder text-primary">
-                      Running Containers with Docker
-                    </h2>
-                  </div>
-
-                  <p>
-		    I built and deployed a personal static website using Nginx as the web server and Docker
-	    for containerization. I customized the site’s HTML and CSS files to create a professional 
-	    portfolio layout using Nvim. 
+                                      </div>
+				      <p>
+		    I built and deployed a static webpage using Nginx as the web server. The official Nginx Docker image documentation is a great reference for creating and customizing configurations. Nginx 
+		    functions as a reverse proxy and web server that supports HTTP, HTTPS, SMTP, POP3, and IMAP protocols, while also providing caching capabilities. I chose to use a Dockerfile to generate a 
+		    lightweight custom image based on Alpine Linux.	
 		  </p>
-
                   <div class="code-box mb-4">
                     <pre><code class="language-bash">
-# Create and run a new container
-docker run -it -d --name my_container ubuntu bash
-
-# Enter the container interactively
-docker exec -it my_container bash
-
-# List files inside
-ls
+# Dockerfile 
+FROM nginx:alpine.version
+COPY static-html-directory /usr/share/nginx/html
                     </code></pre>
-		 <h4 class="fw-bold">Example Output</h4>
+		 <h4 class="fw-bold">Exposing Port</h4>
 		     <p>
-		    I then configured an Nginx server inside a lightweight
-	    Alpine Linux image to serve the pages. The project was version-controlled and hosted 
-	    through GitHub, demonstrating how containerized web applications can be developed, tested,
-	    and shared efficiently. 		  </p>
-
-                  <div class="code-box mb-4">
-                    <pre><code class="language-bash">
-# Create and run a new container
-docker run -it -d --name my_container ubuntu bash
-
-# Enter the container interactively
-docker exec -it my_container bash
-
-# List files inside
-ls
-                    </code></pre>
-
-    
-		     </code></pre>
-		 <h4 class="fw-bold">Example Output</h4>
-		     <p>
-	    The project was version-controlled and hosted through GitHub, demonstrating how containerized web applications can be developed, tested, and shared efficiently. 		 
+		     I then exposed my directory contents to an external port and then opened the 
+		     site at http://localhost:8080
 		     </p>
 
                   <div class="code-box mb-4">
                     <pre><code class="language-bash">
-# Create and run a new container
-docker run -it -d --name my_container ubuntu bash
-
-# Enter the container interactively
-docker exec -it my_container bash
-
-# List files inside
-ls
+# create docker image 
+docker run --name some-nginx -d -p 8080:80 some-content-nginx
                     </code></pre>
+    
+		     </code></pre>
+		 <h4 class="fw-bold">Commit and Push</h4>
+		     <p>
+I used Github Pages to publish my static webpage. After setting up my SSH key, I was able to commit and push changes directly from my local directory to Github. It seems scary, but once you have done it a few times, it becomes a breeze.
+		     </p>
 
-
-
-
-                  </div>
-
-                  <h4 class="fw-bold">Example Output</h4>
                   <div class="code-box mb-4">
                     <pre><code class="language-bash">
-root@7e77640bca68:/# ls
-bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
-root@7e77640bca68:/#
+# Commit and push changes in current directory to main
+git add . 
+git commit -m “description” 
+git push -u origin main 
                     </code></pre>
                   </div>
-
                   <p>
-                    You can use this same syntax highlighting for any code snippets in
-                    your projects section. The page follows the same design as your
-                    Resume page for consistency across your site.
+                    The above is a simplistic overview, but in reality it took about a week of troubleshooting to get everything running smoothly. Editing the contents and style took another week to get a basic understanding of HTML and CSS styling. I went back and forth of how to get the Contact Me form working, but ultimately decided to just use formspree.io. I contemplated creating a Next.js or Flask app with SQL, but just opted for a shortcut for now as I just need to get this website up and running. That could be for a future post. I created a .gitignore file for Git to ignore as I continue building projects
+		</p>
+		<p>
+Overall, this was a great foundational project to start with. I’ve worked with Docker before, but only at a surface level. Being an Arch user, I’m comfortable working from the terminal, but my Neovim workflow improved significantly throughout this project. There were plenty of headaches along the way trying to get everything fully implemented, but that’s the whole point of building projects—you learn the most by troubleshooting when things go wrong.
+		</p>
+		<p>
+Thanks for reading if you made it this far!
                   </p>
                 </div>
               </div>
@@ -229,4 +201,3 @@ root@7e77640bca68:/#
     <script src="js/scripts.js"></script>
   </body>
 </html>
-
